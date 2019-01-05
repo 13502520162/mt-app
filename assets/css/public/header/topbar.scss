@@ -68,6 +68,7 @@
         &.list:hover {
           border: 1px solid #E5E5E5;
           border-top: none;
+          background: #fff;
 
           >dl {
             display: block;
@@ -97,7 +98,7 @@
             width: 140%;
             position: relative;
             border-top: 1px solid #e5e5e5;
-            left: -31px;
+            left: -32px;
             top: -1px;
             border-bottom: 1px solid #e5e5e5;
             border-left: 1px solid #E5E5E5;
@@ -117,6 +118,7 @@
 
           &:hover {
             border-bottom: none;
+            background: #fff;
           }
         }
 
@@ -132,7 +134,7 @@
           padding: 30px 36px 36px 47px;
           width: 1250px;
           position: relative;
-          left: -1175px;
+          left: -1173px;
           z-index: 999;
           border: 1px solid #e5e5e5;
           display: none;

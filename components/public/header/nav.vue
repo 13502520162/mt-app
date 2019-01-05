@@ -2,26 +2,16 @@
   <div class="m-nav">
     <ul class="nav">
       <li class="list">
-        <nuxt-link
-          to="/my">我的美团</nuxt-link>
+        <nuxt-link to="/my">我的美团</nuxt-link>
         <dl>
-          <dd>
-            <nuxt-link
-              to="/my">我的订单</nuxt-link>
-          </dd>
-          <dd>
-            <nuxt-link
-              to="/my">我的收藏</nuxt-link>
-          </dd>
-          <dd>
-            <nuxt-link
-              to="/my">抵用券</nuxt-link>
-          </dd>
-          <dd>
-            <nuxt-link
-              to="/my">账户设置</nuxt-link>
-          </dd>
+          <dd><nuxt-link to="/order">我的订单</nuxt-link></dd>
+          <dd><nuxt-link to="/order">我的收藏</nuxt-link></dd>
+          <dd><nuxt-link to="/order">抵用券</nuxt-link></dd>
+          <dd><nuxt-link to="/order">账户设置</nuxt-link></dd>
         </dl>
+      </li>
+      <li>
+        <nuxt-link to="/order">手机APP</nuxt-link>
       </li>
       <li class="list bd">
         <nuxt-link to="/center">商家中心</nuxt-link>
@@ -32,13 +22,8 @@
           <dd><nuxt-link to="/kaipiao">商家申请开票</nuxt-link></dd>
         </dl>
       </li>
-      <li class="list bd">
-        <nuxt-link
-          to="/center">商家中心</nuxt-link>
-      </li>
       <li class="list site">
-        <nuxt-link
-          to="/site">网站导航</nuxt-link>
+        <nuxt-link to="/site">网站导航</nuxt-link>
         <div class="subContainer">
           <dl class="hotel">
             <dt>酒店旅游</dt>
@@ -83,6 +68,14 @@
               <a href="#">
                 <img
                   src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/appicons/meituan.png"
+                  title="外卖app"
+                  alt="外卖app">
+              </a>
+            </dd>
+            <dd>
+              <a href="#">
+                <img
+                  src="//s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/waimai.png"
                   title="美团app"
                   alt="美团app">
               </a>
@@ -90,33 +83,25 @@
             <dd>
               <a href="#">
                 <img
-                  src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/appicons/meituan.png"
-                  title="美团app"
-                  alt="美团app">
+                  src="//s0.meituan.net/bs/fe-web-meituan/404d350/img/appicons/zhenguo.png"
+                  title="榛果app"
+                  alt="榛果app">
               </a>
             </dd>
             <dd>
               <a href="#">
                 <img
-                  src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/appicons/meituan.png"
-                  title="美团app"
-                  alt="美团app">
+                  src="//s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/dianping.png"
+                  title="点评app"
+                  alt="点评app">
               </a>
             </dd>
             <dd>
               <a href="#">
                 <img
-                  src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/appicons/meituan.png"
-                  title="美团app"
-                  alt="美团app">
-              </a>
-            </dd>
-            <dd>
-              <a href="#">
-                <img
-                  src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/appicons/meituan.png"
-                  title="美团app"
-                  alt="美团app">
+                  src="//s1.meituan.net/bs/fe-web-meituan/404d350/img/appicons/maoyan.png"
+                  title="猫眼app"
+                  alt="猫眼app">
               </a>
             </dd>
           </dl>
@@ -128,10 +113,8 @@
 
 <script>
   export default {
-    name: ''
   }
 </script>
 
-<style>
-
+<style lang="css">
 </style>

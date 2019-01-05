@@ -1,6 +1,6 @@
 <template>
-  <el-container>
-    <el-header class="layout-default">
+  <el-container class="layout-default">
+    <el-header height="197px">
       <my-header/>
     </el-header>
     <el-main>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import MyHeader from '../components/public/header/topbar'
+  import MyHeader from '../components/public/header/index'
 
   export default {
     name: '',
