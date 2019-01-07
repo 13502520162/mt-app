@@ -45,6 +45,9 @@
           child: [{
             title: '外卖',
             child: ['美团外卖']
+          },{
+            title: '外卖',
+            child: ['美团外卖']
           }]
         }, {
           type: 'hotel',

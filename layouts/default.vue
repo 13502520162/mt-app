@@ -1,6 +1,8 @@
 <template>
   <el-container class="layout-default">
-    <el-header height="197px">
+    <el-header
+      height="197px"
+      style="box-shadow: 0 2px 27px 0 rgba(0,0,0,.1);">
       <my-header/>
     </el-header>
     <el-main>
