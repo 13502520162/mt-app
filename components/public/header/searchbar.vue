@@ -13,25 +13,29 @@
         class="center">
         <div class="wrapper">
           <el-input
+            v-model="search"
             placeholder="搜索商家或地点"
+            @focus="focus"
+            @blur="blur"
+            @input="input"
           />
           <button class="el-button el-button--primary"><i class="el-icon-search"/></button>
-          <dl class="hotPlace">
+          <dl
+            v-if="isHotPlace"
+            class="hotPlace">
             <dt>热门搜索</dt>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
+            <dd
+              v-for="(item,idx) in hotPlace"
+              :key="idx">{{ item }}
+            </dd>
           </dl>
-          <dl class="searchList">
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
-            <dd>火锅</dd>
+          <dl
+            v-if="isSearchList"
+            class="searchList">
+            <dd
+              v-for="(item,idx) in searchList"
+              :key="idx">{{ item }}
+            </dd>
           </dl>
         </div>
         <p class="suggset">
@@ -42,21 +46,36 @@
           <a href="#">故宫博物言</a>
         </p>
         <ul class="nav">
-          <li><nuxt-link
-            to="/"
-            class="takeout">美团外卖</nuxt-link></li>
-          <li><nuxt-link
-            to="/"
-            class="movie">猫眼电影</nuxt-link></li>
-          <li><nuxt-link
-            to="/"
-            class="hotel">美团酒店</nuxt-link></li>
-          <li><nuxt-link
-            to="/"
-            class="apartment">民宿/公寓</nuxt-link></li>
-          <li><nuxt-link
-            to="/"
-            class="business">商家入驻</nuxt-link></li>
+          <li>
+            <nuxt-link
+              to="/"
+              class="takeout">美团外卖
+            </nuxt-link>
+          </li>
+          <li>
+            <nuxt-link
+              to="/"
+              class="movie">猫眼电影
+            </nuxt-link>
+          </li>
+          <li>
+            <nuxt-link
+              to="/"
+              class="hotel">美团酒店
+            </nuxt-link>
+          </li>
+          <li>
+            <nuxt-link
+              to="/"
+              class="apartment">民宿/公寓
+            </nuxt-link>
+          </li>
+          <li>
+            <nuxt-link
+              to="/"
+              class="business">商家入驻
+            </nuxt-link>
+          </li>
         </ul>
       </el-col>
       <el-col
@@ -79,6 +98,38 @@
 </template>
 
 <script>
+  export default {
+    data() {
+      return {
+        isFocus: false,
+        search: '',
+        hotPlace: ['火锅', '火锅', '火锅', '火锅', '火锅'],
+        searchList: ['火锅', '火锅', '火锅', '火锅', '火锅']
+      }
+    },
+    computed: {
+      isHotPlace: function() {
+        return this.isFocus && !this.search
+      },
+      isSearchList: function() {
+        return this.isFocus && this.search
+      }
+    },
+    methods: {
+      focus: function() {
+        this.isFocus = true
+      },
+      blur: function() {
+        let self = this
+        setTimeout(function() {
+          self.isFocus = false
+        }, 200)
+      },
+      input:function() {
+        console.log(123)
+      }
+    }
+  }
 </script>
 
 <style lang="css">
