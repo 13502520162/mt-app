@@ -7,20 +7,29 @@
     <template v-else>
       <nuxt-link
         class="login"
-        to="/login">立即登录</nuxt-link>
+        to="/login">立即登录
+      </nuxt-link>
       <nuxt-link
         class="register"
-        to="/register">注册</nuxt-link>
+        to="/register">注册
+      </nuxt-link>
     </template>
   </div>
 </template>
 
 <script>
+  import Config from '../../../server/dbs/config'
   export default {
     name: '',
     data() {
       return {
         user: ''
+      }
+    },
+    async mounted() {
+    const {status,data:{user}} = await this.$axios.get(Config.httpIp+'/users/getUser')
+      if (status===200){
+        this.user = user
       }
     }
   }

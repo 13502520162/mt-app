@@ -4,7 +4,7 @@
       <header>
         <a
           href="/"
-          class="site-logo"/>
+          class="site-logo" />
         <span class="login">
           <em class="bold">已有美团账号？</em>
           <a href="/login">
@@ -25,17 +25,16 @@
         <el-form-item
           label="昵称"
           prop="name">
-          <el-input v-model="ruleForm.name"/>
+          <el-input v-model="ruleForm.name" />
         </el-form-item>
         <el-form-item
           label="邮箱"
           prop="email">
-          <el-input v-model="ruleForm.email"/>
+          <el-input v-model="ruleForm.email" />
           <el-button
             size="mini"
             round
-            @click="sendMsg">发送验证码
-          </el-button>
+            @click="sendMsg">发送验证码</el-button>
           <span class="status">{{ statusMsg }}</span>
         </el-form-item>
         <el-form-item
@@ -43,27 +42,26 @@
           prop="code">
           <el-input
             v-model="ruleForm.code"
-            maxlength="4"/>
+            maxlength="4" />
         </el-form-item>
         <el-form-item
           label="密码"
           prop="pwd">
           <el-input
             v-model="ruleForm.pwd"
-            type="password"/>
+            type="password" />
         </el-form-item>
         <el-form-item
           label="确认密码"
           prop="cpwd">
           <el-input
             v-model="ruleForm.cpwd"
-            type="password"/>
+            type="password" />
         </el-form-item>
         <el-form-item>
           <el-button
             type="primary"
-            @click="register">同意以下协议并注册
-          </el-button>
+            @click="register">同意以下协议并注册</el-button>
           <div class="error">{{ error }}</div>
         </el-form-item>
         <el-form-item>
@@ -78,8 +76,9 @@
 </template>
 
 <script>
+  import CryptoJS from 'crypto-js'
+  import Config from '../server/dbs/config'
   export default {
-    layout: 'blank',
     data() {
       return {
         statusMsg: '',
@@ -128,9 +127,10 @@
         }
       }
     },
+    layout: 'blank',
     methods: {
-      sendMsg: function() {
-        const self = this
+      sendMsg: function () {
+        const self = this;
         let namePass
         let emailPass
         if (self.timerid) {
@@ -147,32 +147,61 @@
           emailPass = valid
         })
         if (!namePass && !emailPass) {
-          self.$axios.post('/users/verify', {
+          self.$axios.post(Config.httpIp+'/users/verify', {
             username: encodeURIComponent(self.ruleForm.name),
             email: self.ruleForm.email
-          }).then(({ status, data }) => {
+          }).then(({
+                     status,
+                     data
+                   }) => {
             if (status === 200 && data && data.code === 0) {
-              let count = 60
-              self.statusMs = `验证码已发送，剩余${count--}秒`
-              self.timerid = setInterval(function() {
-                self.statusMs = `验证码已发送，剩余${count--}秒`
+              let count = 60;
+              self.statusMsg = `验证码已发送,剩余${count--}秒`
+              self.timerid = setInterval(function () {
+                self.statusMsg = `验证码已发送,剩余${count--}秒`
                 if (count === 0) {
                   clearInterval(self.timerid)
                 }
               }, 1000)
             } else {
-              self.statusMs = data.msg
+              self.statusMsg = data.msg
             }
           })
         }
       },
-      register: function() {
-
+      register: function () {
+        let self = this;
+        this.$refs['ruleForm'].validate((valid) => {
+          if (valid) {
+            self.$axios.post(Config.httpIp+'/users/signup', {
+              username: window.encodeURIComponent(self.ruleForm.name),
+              password: CryptoJS.MD5(self.ruleForm.pwd).toString(),
+              email: self.ruleForm.email,
+              code: self.ruleForm.code
+            }).then(({
+                       status,
+                       data
+                     }) => {
+              if (status === 200) {
+                if (data && data.code === 0) {
+                  location.href = '/login'
+                } else {
+                  self.error = data.msg
+                }
+              } else {
+                self.error = `服务器出错，错误码:${status}`
+              }
+              setTimeout(function () {
+                self.error = ''
+              }, 1500)
+            })
+          }
+        })
       }
     }
   }
 </script>
 
-<style lang="sass">
-  @import "../assets/css/register/index"
+<style lang="scss">
+  @import "@/assets/css/register/index.scss";
 </style>

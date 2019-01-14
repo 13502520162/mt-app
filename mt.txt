@@ -1,2 +1,4 @@
 mongo 启动在 bin目录下  mongod --dbpath D:\mongodb\data\db
 redis  redis-server
+
+mongo数据库bat导入命令   mongoimport -d student -c topsearches C:\Users\admin\Desktop\dbs\topsearches.dat

@@ -3,8 +3,8 @@ import axios from './utils/axios'
 import Province from '../dbs/models/province'
 
 let router = new Router({prefix: '/geo'})
-
-const sign = 'abcd';
+/* 郭二蛋 4107300 */
+const sign = 'e8720a57325cd55c12ac29f1e70ee86e';
 
 router.get('/getPosition', async (ctx) => {
   let {
