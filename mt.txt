@@ -1,0 +1,2 @@
+mongo 启动在 bin目录下  mongod --dbpath D:\mongodb\data\db
+redis  redis-server
