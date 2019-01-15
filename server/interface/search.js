@@ -3,7 +3,7 @@ import axios from './utils/axios'
 import Poi from '../dbs/models/poi'
 import sign from './utils/sign'
 
-console.log(sign)
+
 
 let router = new Router({prefix: '/search'})
 
@@ -35,7 +35,7 @@ router.get('/top', async (ctx) => {
     params: {
       input: ctx.query.input,
       city: ctx.query.city,
-      sign
+      sign:sign
     }
   })
   ctx.body = {

@@ -25,8 +25,8 @@
             class="hotPlace">
             <dt>热门搜索</dt>
             <dd
-              v-for="(item,idx) in hotPlace"
-              :key="idx">{{ item }}
+              v-for="(item,idx) in $store.state.home.hotPlace.slice(0,4)"
+              :key="idx">{{ item.name }}
             </dd>
           </dl>
           <dl
@@ -34,16 +34,16 @@
             class="searchList">
             <dd
               v-for="(item,idx) in searchList"
-              :key="idx">{{ item }}
+              :key="idx">{{ item.name }}
             </dd>
           </dl>
         </div>
         <p class="suggset">
-          <a href="#">故宫博物言</a>
-          <a href="#">故宫博物言</a>
-          <a href="#">故宫博物言</a>
-          <a href="#">故宫博物言</a>
-          <a href="#">故宫博物言</a>
+          <a
+            v-for="(item,idx) in $store.state.home.hotPlace.slice(5,10)"
+            :key="idx"
+            href="#"
+            style="padding-right: 9px;">{{ item.name }}</a>
         </p>
         <ul class="nav">
           <li>
@@ -98,13 +98,15 @@
 </template>
 
 <script>
+  import _ from 'lodash'
+  import Config from '../../../server/dbs/config'
+
   export default {
     data() {
       return {
         isFocus: false,
         search: '',
-        hotPlace: ['火锅', '火锅', '火锅', '火锅', '火锅'],
-        searchList: ['火锅', '火锅', '火锅', '火锅', '火锅']
+        searchList: []
       }
     },
     computed: {
@@ -125,9 +127,18 @@
           self.isFocus = false
         }, 200)
       },
-      input:function() {
-        console.log(123)
-      }
+      input: _.debounce(async function() {
+        let self = this
+        let city = self.$store.state.geo.position.city.replace('市', '')
+        self.searchList = []
+        let { status, data: { top } } = await self.$axios.get(Config.httpIp + '/search/top', {
+          params: {
+            input: self.search,
+            city
+          }
+        })
+        self.searchList = top.slice(0, 10)
+      }, 300)
     }
   }
 </script>
