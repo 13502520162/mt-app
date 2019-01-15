@@ -110,7 +110,7 @@
                 url:'//abc.com'
               }
             })
-            self.list[self.kind]=r.slice(0,9)
+            self.list[self.kind]=r.slice(0,90)
           }else{
             self.list[self.kind]=[]
           }

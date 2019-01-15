@@ -1,6 +1,6 @@
 .m-istyle {
   width: 1190px;
-  margin-left: 20px;
+/*  margin-left: 20px;*/
   margin-top: 40px;
 
   dl {
@@ -65,13 +65,12 @@
 
     >li {
       width: 33.3%;
-      height: 314px;
       padding: 10px;
       box-sizing: border-box;
       float: left;
       background: #fff;
       transition: background-color .5s;
-      height: 314px;
+      height: 320px;
 
       .el-card {
         width: 100%;
